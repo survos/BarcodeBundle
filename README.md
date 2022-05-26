@@ -2,7 +2,9 @@
 
 Symfony Bundle for picqer/php-barcode-generator, to generate an SVG barcode within twig.
 
+```bash
 composer req survos/barcode-bundle
+```
 
 @todo: install recipe
 
