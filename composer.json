@@ -28,9 +28,6 @@
         "phpstan/phpstan": "^1.7"
     },
     "extra": {
-        "branch-alias": {
-            "dev-main": "1.0"
-        },
         "symfony": {
             "allow-contrib": "true",
             "id": "barcode-bundle.survos.com"
