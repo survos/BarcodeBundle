@@ -1,43 +1,24 @@
 # BarcodeBundle
 
-    composer config repositories.barcode '{"type": "path", "url": "/home/tac/survos/bundles/BarcodeBundle"}'
-    composer req tacman/barcode-bundle:*@dev
+Symfony Bundle for picqer/php-barcode-generator, to generate an SVG barcode within twig.
 
+composer req survos/barcode-bundle
 
-Symfony Bundle for picqer/php-barcode-generator
+@todo: install recipe
 
-## Symfony 6.1 Bundle Tutorial
+```twig
+{{ '12345'|barcode }}
+
+{{ barcode(serial_number, 2, 80, 'red' }}
 
 ```
-composer init
-```
 
-```json
-{
-    "name": "survos/barcode-bundle",
-    "description": "Integrates picqer/php-barcode-generator in a Symfony application",
-    "type": "symfony-bundle",
-    "require": {
-        "php": "^8.1",
-        "picqer/php-barcode-generator": "^2.2",
-        "symfony/config": "^6.1@RC",
-        "symfony/dependency-injection": "^6.1@RC",
-        "symfony/http-kernel": "^6.1@RC",
-        "twig/twig": "^3.4"
-    },
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Survos\\BarcodeBundle\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Tac Tacelosky",
-            "email": "tacman@gmail.com"
-        }
-    ],
-    "minimum-stability": "beta"
-}
-```
+To set default values,
 
+```yaml
+# config/packages/barcode.yaml
+barcode:
+  widthFactor: 3
+  height: 120
+  foregroundColor: 'purple'
+```
