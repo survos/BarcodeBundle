@@ -1,5 +1,9 @@
 # BarcodeBundle
 
+    composer config repositories.barcode '{"type": "path", "url": "/home/tac/survos/bundles/BarcodeBundle"}'
+    composer req tacman/barcode-bundle:*@dev
+
+
 Symfony Bundle for picqer/php-barcode-generator
 
 ## Symfony 6.1 Bundle Tutorial
@@ -36,3 +40,4 @@ composer init
     "minimum-stability": "beta"
 }
 ```
+
