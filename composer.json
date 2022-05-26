@@ -2,6 +2,7 @@
     "name": "survos/barcode-bundle",
     "description": "Integrates picqer/php-barcode-generator in a Symfony application",
     "type": "symfony-bundle",
+    "keywords": ["barcode", "symfony"],
     "require": {
         "php": "^8.1",
         "picqer/php-barcode-generator": "^2.2",
@@ -23,14 +24,17 @@
         }
     ],
     "minimum-stability": "beta",
-    "repositories": {
-        "survos_maker": {
-            "type": "path",
-            "url": "/home/tac/survos/bundles/maker-bundle"
-        }
-    },
     "require-dev": {
-        "phpstan/phpstan": "^1.7",
-        "survos/maker-bundle": "*@dev"
+        "phpstan/phpstan": "^1.7"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0"
+        },
+        "symfony": {
+            "allow-contrib": "true",
+            "id": "barcode-bundle.survos.com"
+        }
     }
+
 }
