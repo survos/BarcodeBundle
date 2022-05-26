@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class BarcodeBundle extends AbstractBundle
+class SurvosBarcodeBundle extends AbstractBundle
 {
 
     // $config is the bundle Configuration that you usually process in ExtensionInterface::load() but already merged and processed
