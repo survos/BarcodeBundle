@@ -1,14 +1,3 @@
-# BarcodeBundle
-
-Symfony Bundle for picqer/php-barcode-generator
-
-## Symfony 6.1 Bundle Tutorial
-
-```
-composer init
-```
-
-```json
 {
     "name": "survos/barcode-bundle",
     "description": "Integrates picqer/php-barcode-generator in a Symfony application",
@@ -35,4 +24,3 @@ composer init
     ],
     "minimum-stability": "beta"
 }
-```
