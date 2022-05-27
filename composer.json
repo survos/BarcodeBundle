@@ -6,7 +6,7 @@
     "authors": [
         {
             "name": "Tac Tacelosky",
-            "email": "survos@gmail.com"
+            "email": "tacman@gmail.com"
         }
     ],
     "require": {
@@ -26,11 +26,5 @@
         "symfony/browser-kit": "^6.1",
         "symfony/framework-bundle": "^6.1",
         "symfony/phpunit-bridge": "^6.1"
-    },
-    "repositories": {
-        "barcode": {
-            "type": "path",
-            "url": "/home/tac/survos/bundles/BarcodeBundle"
-        }
     }
 }
