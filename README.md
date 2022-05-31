@@ -6,8 +6,6 @@ Symfony Bundle for picqer/php-barcode-generator, to generate an SVG barcode with
 composer req survos/barcode-bundle
 ```
 
-@todo: install recipe
-
 ```twig
 {{ '12345'|barcode }}
 
@@ -15,12 +13,21 @@ composer req survos/barcode-bundle
 
 ```
 
-To set default values,
-
+To set default values (@todo: install recipe)
 ```yaml
 # config/packages/barcode.yaml
 barcode:
   widthFactor: 3
   height: 120
   foregroundColor: 'purple'
+```
+
+```bash
+symfony new BarcodeDemo --webapp
+yarn install 
+bin/console make:controller AppController
+composer req survos/barcode-bundle
+echo "{{ 'test'|barcode }} or {{ barcode('test', 2, 80, 'red') }} " >> templates/app/index.html.twig
+symfony server:start -d
+
 ```
