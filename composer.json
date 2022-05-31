@@ -14,17 +14,12 @@
         "picqer/php-barcode-generator": "^2.2",
         "symfony/config": "^6.1",
         "symfony/dependency-injection": "^6.1",
-        "symfony/http-kernel": "^6.1"
+        "symfony/http-kernel": "^6.1",
+        "twig/twig": "^3.4"
     },
     "autoload": {
         "psr-4": {
             "Survos\\BarcodeBundle\\": "src/"
         }
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^1.7",
-        "symfony/browser-kit": "^6.1",
-        "symfony/framework-bundle": "^6.1",
-        "symfony/phpunit-bridge": "^6.1"
     }
 }
