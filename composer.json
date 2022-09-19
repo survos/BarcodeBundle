@@ -26,5 +26,12 @@
         "symfony": {
             "require": "^6.1.0"
         }
+    },
+    "conflict": {
+        "survos/second-package": "<1.2.2",
+        "survos/faker-bundle": "<1.2.2",
+        "survos/core-bundle": "<1.2.2",
+        "survos/tree-bundle": "<1.2.2",
+        "survos/first-package": "<1.2.2"
     }
 }
