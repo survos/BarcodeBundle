@@ -28,10 +28,10 @@
         }
     },
     "conflict": {
-        "survos/second-package": "<1.2.2",
-        "survos/faker-bundle": "<1.2.2",
-        "survos/core-bundle": "<1.2.2",
-        "survos/tree-bundle": "<1.2.2",
-        "survos/first-package": "<1.2.2"
+        "survos/second-package": "<1.2.3",
+        "survos/faker-bundle": "<1.2.3",
+        "survos/core-bundle": "<1.2.3",
+        "survos/tree-bundle": "<1.2.3",
+        "survos/first-package": "<1.2.3"
     }
 }
