@@ -11,10 +11,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SurvosBarcodeBundle extends AbstractBundle
 {
-
     protected string $extensionAlias = 'survos_barcode';
 
-    /** @param array<mixed> $config */
+    /**
+     * @param array<mixed> $config
+     */
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $definition = $builder
@@ -37,5 +38,4 @@ class SurvosBarcodeBundle extends AbstractBundle
             ->end();
         ;
     }
-
 }
