@@ -24,10 +24,17 @@ barcode:
 
 ```bash
 symfony new BarcodeDemo --webapp
-yarn install 
 bin/console make:controller AppController
 composer req survos/barcode-bundle
-echo "{{ 'test'|barcode }} or {{ barcode('test', 2, 80, 'red') }} " >> templates/app/index.html.twig
+
+cat <<'EOF' > templates/app/index.html.twig
+{% extends 'base.html.twig' %}
+{% block body %}
+{{ 'test'|barcode }} or {{ barcode('test', 2, 80, 'red') }}
+{% endblock %}
+EOF
+
+#echo "{{ 'test'|barcode }} or {{ barcode('test', 2, 80, 'red') }} " >> templates/app/index.html.twig
 symfony server:start -d
 
 ```
