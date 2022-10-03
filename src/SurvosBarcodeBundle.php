@@ -29,7 +29,8 @@ class SurvosBarcodeBundle extends AbstractBundle
         $definition->setArgument('$foregroundColor', $config['foregroundColor']);
 
         $serviceId = 'survos_barcode.barcode_service';
-        $builder->autowire($serviceId, BarcodeService::class);
+        $builder->autowire($serviceId, BarcodeService::class)
+            ->setPublic(true);
         $container->services()->alias(BarcodeService::class, $serviceId);
 
 
