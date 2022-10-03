@@ -2,6 +2,8 @@
 
 namespace Survos\BarcodeBundle;
 
+use Survos\AuthBundle\Services\AuthService;
+use Survos\BarcodeBundle\Service\BarcodeService;
 use Survos\BarcodeBundle\Twig\BarcodeTwigExtension;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -25,6 +27,12 @@ class SurvosBarcodeBundle extends AbstractBundle
         $definition->setArgument('$widthFactor', $config['widthFactor']);
         $definition->setArgument('$height', $config['height']);
         $definition->setArgument('$foregroundColor', $config['foregroundColor']);
+
+        $serviceId = 'survos_barcode.barcode_service';
+        $container->services()->alias(BarcodeService::class, $serviceId);
+        $builder->autowire($serviceId, BarcodeService::class);
+
+
     }
 
     public function configure(DefinitionConfigurator $definition): void
