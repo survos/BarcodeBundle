@@ -26,9 +26,10 @@ barcode:
 ```
 
 ```bash
-symfony new BarcodeDemo --webapp
-bin/console make:controller AppController
+symfony new BarcodeDemo --webapp && cd BarcodeDemo
 composer req survos/barcode-bundle
+bin/console make:controller AppController
+sed -i "s|/app|/|" src/Controller/AppController.php 
 
 cat <<'EOF' > templates/app/index.html.twig
 {% extends 'base.html.twig' %}
