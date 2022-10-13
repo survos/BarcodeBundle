@@ -27,11 +27,23 @@ class BarcodeService
         return array_reduce([
             BarcodeGeneratorSVG::class,
             BarcodeGeneratorHTML::class,
-            BarcodeGeneratorDynamicHTML::class,
+//            BarcodeGeneratorDynamicHTML::class,
             BarcodeGeneratorPNG::class,
             BarcodeGeneratorJPG::class
         ], function($carry, $className) {
             $carry[(new \ReflectionClass($className))->getShortName()] = $className;
+            return $carry;
+        }, []);
+    }
+
+    public function getGenerators(): array
+    {
+        // we _could_ use classfinder to get all the classes that implement BarcodeGenerator
+        return array_reduce(array_values($this->getGeneratorClasses()), function($carry, $className) {
+            $carry[(new \ReflectionClass($className))->getShortName()] = [
+                'class' => $className,
+                'imageFormat' => $this->getImageFormat($className)
+                ];
             return $carry;
         }, []);
     }
