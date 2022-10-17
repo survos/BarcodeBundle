@@ -25,10 +25,18 @@ barcode:
   foregroundColor: 'purple'
 ```
 
+## Proof that it works
+
+Requirements:
+
+* Locally installed PHP 8, with GD or Imagick
+* Symfony CLI
+* sed (to change /app to / without opening an editor)
+
 ```bash
 symfony new BarcodeDemo --webapp && cd BarcodeDemo
-composer req survos/barcode-bundle
-bin/console make:controller AppController
+symfony composer req survos/barcode-bundle
+syfmony console make:controller AppController
 sed -i "s|/app|/|" src/Controller/AppController.php 
 
 cat <<'EOF' > templates/app/index.html.twig
