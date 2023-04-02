@@ -20,13 +20,9 @@ class BarcodeTwigExtension extends AbstractExtension
     ) {
     }
 
-    public function getFilters(): array
+    public function getFilters($twigFilters): array
     {
-        return [
-            new TwigFilter('barcode', [$this, 'barcode'], [
-                'is_safe' => ['html'],
-            ]),
-        ];
+        return $twigFilters;
     }
 
     public function getFunctions(): array
