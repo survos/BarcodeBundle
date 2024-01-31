@@ -48,5 +48,5 @@ EOF
 
 #echo "{{ 'test'|barcode }} or {{ barcode('test', 2, 80, 'red') }} " >> templates/app/index.html.twig
 symfony server:start -d
-
+symfony open:local
 ```
