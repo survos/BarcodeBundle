@@ -13,8 +13,8 @@ jobs:
 #  code-coverage:
 #    uses: survos/.github/.github/workflows/php-coverage-codecov.yml@main
 
-#  composer-validate:
-#    uses: survos/.github/.github/workflows/php-composer-validate.yml@main
+  composer-validate:
+    uses: survos/.github/.github/workflows/php-composer-validate.yml@main
 
 #  sca:
 #    uses: survos/.github/.github/workflows/php-stan.yml@main
