@@ -30,7 +30,7 @@ class BarcodeService
 //            BarcodeGeneratorDynamicHTML::class,
             BarcodeGeneratorPNG::class,
             BarcodeGeneratorJPG::class
-        ], function($carry, $className) {
+        ], function ($carry, $className) {
             $carry[(new \ReflectionClass($className))->getShortName()] = $className;
             return $carry;
         }, []);
@@ -39,7 +39,7 @@ class BarcodeService
     public function getGenerators(): array
     {
         // we _could_ use classfinder to get all the classes that implement BarcodeGenerator
-        return array_reduce(array_values($this->getGeneratorClasses()), function($carry, $className) {
+        return array_reduce(array_values($this->getGeneratorClasses()), function ($carry, $className) {
             $carry[(new \ReflectionClass($className))->getShortName()] = [
                 'class' => $className,
                 'imageFormat' => $this->getImageFormat($className)
@@ -53,15 +53,12 @@ class BarcodeService
         return $this->getGeneratorClasses()[$shortClassname];
     }
 
-    public function getImageFormat(string $generatorClass): ?string {
-        return match($generatorClass) {
+    public function getImageFormat(string $generatorClass): ?string
+    {
+        return match ($generatorClass) {
             BarcodeGeneratorJPG::class => 'image/jpeg',
             BarcodeGeneratorPNG::class => 'image/png',
             default => null
         };
     }
-
-
-
 }
-
