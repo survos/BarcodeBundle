@@ -36,7 +36,7 @@ Requirements:
 ```bash
 symfony new BarcodeDemo --webapp && cd BarcodeDemo
 symfony composer req survos/barcode-bundle
-syfmony console make:controller AppController
+symfony console make:controller AppController
 sed -i "s|/app|/|" src/Controller/AppController.php 
 
 cat <<'EOF' > templates/app/index.html.twig
