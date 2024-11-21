@@ -50,10 +50,5 @@
         "psr-4": {
             "Survos\\BarcodeBundle\\": "src/"
         }
-    },
-    "extra": {
-        "symfony": {
-            "require": "^7.0"
-        }
     }
 }
