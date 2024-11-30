@@ -13,52 +13,29 @@ use Picqer\Barcode\BarcodeGeneratorSVG;
 
 class BarcodeService
 {
-    public function __construct()
+    public function __construct(private array $generators = [])
     {
     }
 
-    public function getGeneratorTypes(): array
+    public function addGenerator(string $class, ?string $imageFormat = null)
     {
-        return (new \ReflectionClass(BarcodeGenerator::class))->getConstants();
+        $this->generators[(new \ReflectionClass($class))->getShortName()] =
+            ['class' => $class,
+                'image_format' => $imageFormat
+            ];
     }
-    public function getGeneratorClasses(): array
-    {
-        // we _could_ use classfinder to get all the classes that implement BarcodeGenerator
-        return array_reduce([
-            BarcodeGeneratorSVG::class,
-            BarcodeGeneratorHTML::class,
-//            BarcodeGeneratorDynamicHTML::class,
-            BarcodeGeneratorPNG::class,
-            BarcodeGeneratorJPG::class
-        ], function ($carry, $className) {
-            $carry[(new \ReflectionClass($className))->getShortName()] = $className;
-            return $carry;
-        }, []);
-    }
+
 
     public function getGenerators(): array
     {
-        // we _could_ use classfinder to get all the classes that implement BarcodeGenerator
-        return array_reduce(array_values($this->getGeneratorClasses()), function ($carry, $className) {
-            $carry[(new \ReflectionClass($className))->getShortName()] = [
-                'class' => $className,
-                'imageFormat' => $this->getImageFormat($className)
-                ];
-            return $carry;
-        }, []);
+        return $this->generators;
     }
 
-    public function getGeneratorClass(string $shortClassname): string
+    public function getGenerator(string $shortName): array
     {
-        return $this->getGeneratorClasses()[$shortClassname];
+        return $this->generators[$shortName];
     }
 
-    public function getImageFormat(string $generatorClass): ?string
-    {
-        return match ($generatorClass) {
-            BarcodeGeneratorJPG::class => 'image/jpeg',
-            BarcodeGeneratorPNG::class => 'image/png',
-            default => null
-        };
-    }
+
+
 }

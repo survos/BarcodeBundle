@@ -14,10 +14,11 @@ class BarcodeTwigExtension extends AbstractExtension
 {
     public function __construct(
         private BarcodeService $barcodeService,
-        private int $widthFactor,
-        private int $height,
-        private string $foregroundColor
-    ) {
+        private int            $widthFactor,
+        private int            $height,
+        private string         $foregroundColor
+    )
+    {
     }
 
     public function getFilters(): array
@@ -28,6 +29,7 @@ class BarcodeTwigExtension extends AbstractExtension
             ]),
         ];
     }
+
     public function getFunctions(): array
     {
         return [
@@ -36,22 +38,34 @@ class BarcodeTwigExtension extends AbstractExtension
         ];
     }
 
-    public function barcode(string $value, ?int $widthFactor = null, ?int $height = null, ?string $foregroundColor = null, string $type = BarcodeGenerator::TYPE_CODE_128, string $generatorClass = BarcodeGeneratorSVG::class ): string
+    public function barcode(string $value,
+                            float|int|string|null $widthFactor = null,
+                            ?int $height = null, ?string $foregroundColor = null,
+                            string $type = BarcodeGenerator::TYPE_CODE_128,
+                            string $generatorClass = 'BarcodeGeneratorSVG'):
+    string
     {
-        if (!class_exists($generatorClass)) {
-            $generatorClass = $this->barcodeService->getGeneratorClass($generatorClass);
-        }
+
+        $generatorData = $this->barcodeService->getGenerator($generatorClass);
         /** @var BarcodeGeneratorSVG|BarcodeGeneratorPNG $generator */
-        $generator = new $generatorClass();
-        $barcodeData = $generator->getBarcode(
+        $generatorInstance = new $generatorData['class'];
+        $imageFormat = $generatorData['image_format']??null;
+        $widthFactor = match($generatorClass) {
+            BarcodeGeneratorSVG::class => (float) $this->widthFactor,
+            default => $widthFactor ?? $this->widthFactor
+        };
+//        dd($generatorClass, $widthFactor);
+        $barcodeData = $generatorInstance->getBarcode(
             barcode: $value,
             type: $type,
-            widthFactor: $widthFactor ?? $this->widthFactor,
+            widthFactor: $widthFactor,
             height: $height ?? $this->height,
             // hack for array / string issue https://github.com/picqer/php-barcode-generator/issues/172
-            foregroundColor: $this->barcodeService->getImageFormat($generatorClass) ? [0,0,0] : $foregroundColor ?? $this->foregroundColor
+            foregroundColor: $imageFormat
+                ? [0, 0, 0] :
+                $foregroundColor ?? $this->foregroundColor
         );
-        if ($this->barcodeService->getImageFormat($generatorClass)) {
+        if ($imageFormat) {
             $barcodeData = base64_encode($barcodeData);
         }
         return $barcodeData;
