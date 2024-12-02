@@ -14,11 +14,10 @@ class BarcodeTwigExtension extends AbstractExtension
 {
     public function __construct(
         private BarcodeService $barcodeService,
-        private int            $widthFactor,
-        private int            $height,
-        private string         $foregroundColor
-    )
-    {
+        private int $widthFactor,
+        private int $height,
+        private string $foregroundColor
+    ) {
     }
 
     public function getFilters(): array
@@ -38,19 +37,20 @@ class BarcodeTwigExtension extends AbstractExtension
         ];
     }
 
-    public function barcode(string $value,
-                            float|int|string|null $widthFactor = null,
-                            ?int $height = null, ?string $foregroundColor = null,
-                            string $type = BarcodeGenerator::TYPE_CODE_128,
-                            string $generatorClass = 'BarcodeGeneratorSVG'):
-    string
-    {
+    public function barcode(
+        string $value,
+        float|int|string|null $widthFactor = null,
+        ?int $height = null,
+        ?string $foregroundColor = null,
+        string $type = BarcodeGenerator::TYPE_CODE_128,
+        string $generatorClass = 'BarcodeGeneratorSVG'
+    ): string {
 
         $generatorData = $this->barcodeService->getGenerator($generatorClass);
-        /** @var BarcodeGeneratorSVG|BarcodeGeneratorPNG $generator */
-        $generatorInstance = new $generatorData['class'];
-        $imageFormat = $generatorData['image_format']??null;
-        $widthFactor = match($generatorClass) {
+        /** @var BarcodeGeneratorSVG|BarcodeGeneratorPNG $generatorInstance */
+        $generatorInstance = new $generatorData['class']();
+        $imageFormat = $generatorData['image_format'] ?? null;
+        $widthFactor = match ($generatorClass) {
             BarcodeGeneratorSVG::class => (float) $this->widthFactor,
             default => $widthFactor ?? $this->widthFactor
         };
@@ -70,5 +70,4 @@ class BarcodeTwigExtension extends AbstractExtension
         }
         return $barcodeData;
     }
-
 }
