@@ -79,9 +79,6 @@ class SurvosBarcodeBundle extends AbstractBundle implements CompilerPassInterfac
                     'image_format' => $this->getImageFormat($generatorClass)
                 ]);
         }
-        $d = $builder->getDefinition(BarcodeGeneratorPNG::class);
-//        dd($d, $d->getTags());
-//        dd($builder->getServiceIds());
     }
 
     public function configure(DefinitionConfigurator $definition): void
